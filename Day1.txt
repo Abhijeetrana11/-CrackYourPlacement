@@ -1,0 +1,93 @@
+***** 1. Find the Duplicate Number ******
+int findDuplicate(vector<int>& nums) {
+        int slow =0;
+        int fast =0;
+        do{
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+            
+        }while(slow!=fast);
+
+        slow=0;
+        while(slow!=fast){
+            slow=nums[slow];
+            fast=nums[fast];
+        }
+        return fast;
+    }
+
+
+***** 2. Sort Colors ******
+void sortColors(vector<int>& nums) {
+        int l=0,m=0,h=nums.size()-1;
+        while(m<=h){
+            if(nums[m]==0){
+                swap(nums[m],nums[l]);
+                m++;
+                l++;
+            }
+            else if(nums[m]==1){
+                m++;
+            }
+            else{
+                swap(nums[m],nums[h]);
+                // m++;
+                h--;
+            }
+        }
+        return;
+    }
+
+
+***** 3.Remove Duplicates from Sorted Array ******
+int removeDuplicates(vector<int>& nums) {
+        if(nums.size()==0)return 0;
+        int i=0;
+        for(int j=1;j<nums.size();j++){
+            if(nums[i]!=nums[j]){
+                i++;
+                nums[i]=nums[j];
+            }
+        }
+        return i+1;
+
+    }
+
+***** 4.Set Matrix zeros******
+    void setZeroes(vector<vector<int>>& matrix) {
+        vector<pair<int,int>>zeros;
+        for(int i=0;i<matrix.size();i++){
+            for(int j=0;j<matrix[0].size();j++){
+                if(matrix[i][j]==0){
+                    zeros.push_back(make_pair(i,j));
+                }
+            }
+        }
+        int row,col;
+        for(auto i : zeros){
+            row=i.first;
+            col=i.second;
+            // row zero krdo
+            for(int c=0;c<matrix[0].size();c++){
+                matrix[row][c]=0;
+            }
+            // col zero krdo
+            for(int r=0;r<matrix.size();r++){
+                matrix[r][col]=0;
+            }
+        }
+        
+    }
+
+    ***** 5.Move Zeros ******
+    void moveZeroes(vector<int>& nums) {
+        
+        int n=nums.size();
+        int i=0;
+       for(int j=0;j<n;j++){
+           if (nums[j]!=0){
+               swap(nums[i], nums[j]);
+               i++;
+           }
+       }
+    }
